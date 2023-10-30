@@ -9,12 +9,25 @@ public class LoginPage {
 
     @FindBy(xpath = "//*[@name='username']")
     private WebElement userName;
+    @FindBy(xpath = "//*[@type='password']")
+    private WebElement password;
+    @FindBy(css = "button[type='submit']")
+    private WebElement loginButton;
+
+    WebDriver driver;
 
     public LoginPage(WebDriver driver){
-        PageFactory.initElements(driver,this);
+        this.driver=driver;
+        PageFactory.initElements(this.driver,this);
     }
 
-    public void enterUserName(){
-        userName.sendKeys("admin");
+    public void enterUserName(String user){
+        userName.sendKeys(user);
+    }
+    public void enterPassword(String passWord){
+        password.sendKeys(passWord);
+    }
+    public void clickLoginButton(){
+        loginButton.click();
     }
 }
